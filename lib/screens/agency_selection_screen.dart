@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 import '../audio/audio_manager.dart';
 import '../audio/sound_effect.dart';
@@ -7,7 +7,7 @@ import '../game/game_controller.dart';
 import '../models/agency.dart';
 import '../widgets/control_card.dart';
 import '../widgets/reputation_bar.dart';
-import 'mission_tree_screen.dart';
+import 'campaign_hub_screen.dart';
 
 class AgencySelectionScreen extends StatefulWidget {
   const AgencySelectionScreen({
@@ -62,7 +62,7 @@ class _AgencySelectionScreenState extends State<AgencySelectionScreen> {
     final GameController controller = widget.controller;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Selecione sua Agencia'),
+        title: const Text('Selecione sua Agência'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -123,7 +123,7 @@ class _AgencySelectionScreenState extends State<AgencySelectionScreen> {
                     const SizedBox(height: 10),
                     ReputationBar(value: agency.initialReputation),
                     const SizedBox(height: 10),
-                    Text('Orcamento Base: ${agency.baseBudget}M'),
+                    Text('Orçamento Base: ${agency.baseBudget}M'),
                     const SizedBox(height: 12),
                     Align(
                       alignment: Alignment.centerRight,
@@ -137,11 +137,11 @@ class _AgencySelectionScreenState extends State<AgencySelectionScreen> {
                           controller.selectAgency(agency);
                           Navigator.of(context).push(
                             MaterialPageRoute<void>(
-                              builder: (_) => MissionTreeScreen(controller: controller),
+                              builder: (_) => CampaignHubScreen(controller: controller),
                             ),
                           );
                         },
-                        child: const Text('Escolher Agencia'),
+                        child: const Text('Escolher Agência'),
                       ),
                     ),
                   ],
