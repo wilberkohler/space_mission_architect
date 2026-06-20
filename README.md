@@ -108,3 +108,4 @@ Esta versão ainda é um MVP/protótipo avançado com dados mockados locais e se
 - `docs/UX_AUDIT.md`: auditoria inicial de experiência do usuário.
 - `docs/ARCHITECTURE_AUDIT.md`: auditoria inicial de arquitetura.
 - `docs/UX_ROADMAP.md`: roteiro incremental de melhorias.
+- `docs/UX_CHANGELOG.md`: registro das mudanças de UX.
