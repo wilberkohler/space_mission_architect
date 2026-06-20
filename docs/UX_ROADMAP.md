@@ -30,9 +30,16 @@ Home cinematográfica
 → Progressão / Próxima Missão
 ```
 
+## Status atual
+
+- P0 Fundação: concluída em documentação/base mínima.
+- P1 Central da Campanha: implementada na branch `ux-campaign-hub`.
+- P1 Componentes compartilhados: primeira leva implementada em `lib/widgets/shared/`.
+- Próxima etapa recomendada: validar com Flutter instalado e melhorar a árvore de missões.
+
 ## P0 — Fundação
 
-### 1. README real
+### 1. README real — concluído
 
 Substituir o template padrão de Flutter por documentação do app real.
 
@@ -42,7 +49,7 @@ Critérios:
 - README lista comandos reais.
 - README menciona dados mockados, áudio/TTS e stack Flutter.
 
-### 2. Teste inicial corrigido
+### 2. Teste inicial corrigido — concluído
 
 Corrigir `test/widget_test.dart`, que ainda referencia o app template.
 
@@ -52,7 +59,7 @@ Critérios:
 - Teste encontra título ou CTA inicial.
 - `flutter test` passa ou erro é documentado.
 
-### 3. Documentação de projeto
+### 3. Documentação de projeto — concluído
 
 Criar:
 
@@ -68,7 +75,7 @@ Critérios:
 
 ## P1 — Fluxo de campanha
 
-### 4. Criar `CampaignHubScreen`
+### 4. Criar `CampaignHubScreen` — implementado em `ux-campaign-hub`
 
 Inserir uma Central da Campanha entre seleção de agência e árvore de missões.
 
@@ -79,9 +86,9 @@ Critérios:
 - CTA principal leva para a árvore de missões.
 - Não altera mecânicas.
 
-### 5. Criar componentes compartilhados
+### 5. Criar componentes compartilhados — primeira leva implementada em `ux-campaign-hub`
 
-Criar componentes leves:
+Componentes criados:
 
 - `SpacePanel`
 - `MetricTile`
@@ -89,7 +96,6 @@ Criar componentes leves:
 - `SectionHeader`
 - `EmptyState`
 - `PrimaryObjectiveCard`
-- `ResponsiveTwoColumn`
 
 Critérios:
 
@@ -97,7 +103,7 @@ Critérios:
 - Componentes não contêm regra de jogo.
 - `CampaignHubScreen` usa esses componentes.
 
-### 6. Melhorar árvore de missões
+### 6. Melhorar árvore de missões — próxima etapa recomendada
 
 Tornar o mapa de campanha mais acionável.
 
@@ -194,4 +200,4 @@ Critérios:
 
 ## Próxima etapa recomendada
 
-Depois desta fundação, implementar `CampaignHubScreen` e os primeiros componentes compartilhados.
+Validar a branch `ux-campaign-hub` com `flutter analyze` e `flutter test`. Depois, melhorar a árvore de missões com filtros funcionais e explicações de bloqueio.
