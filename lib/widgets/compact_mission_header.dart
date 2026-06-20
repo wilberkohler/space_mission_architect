@@ -86,10 +86,11 @@ class CompactMissionHeader extends StatelessWidget {
   }
 
   Widget _statusBlock({required bool compact}) {
-    final String agencyName = selectedAgency?.name ?? 'Agencia Orbital';
+    final String agencyName = selectedAgency?.name ?? 'Agência Orbital';
     final List<Widget> chips = <Widget>[
       _chip(Icons.public, agencyName, AppColors.accent),
-      _chip(Icons.calendar_today_outlined, currentYear.toString(), AppColors.textMuted),
+      _chip(Icons.calendar_today_outlined, currentYear.toString(),
+          AppColors.textMuted),
       _chip(Icons.attach_money_outlined, '${budget}M', AppColors.green),
       if (careerTitle != null && careerTitle!.isNotEmpty)
         _chip(Icons.workspace_premium_outlined, careerTitle!, AppColors.yellow),
@@ -120,9 +121,9 @@ class CompactMissionHeader extends StatelessWidget {
               spacing: 6,
               runSpacing: 6,
               children: <Widget>[
-                _scoreDot('Ciencia', scienceScore, AppColors.accent),
-                _scoreDot('Industria', industryScore, AppColors.yellow),
-                _scoreDot('Reputacao', reputationScore, AppColors.purple),
+                _scoreDot('Ciência', scienceScore, AppColors.accent),
+                _scoreDot('Indústria', industryScore, AppColors.yellow),
+                _scoreDot('Reputação', reputationScore, AppColors.purple),
               ],
             ),
           ],
@@ -132,28 +133,33 @@ class CompactMissionHeader extends StatelessWidget {
   }
 
   Widget _chip(IconData icon, String text, Color color) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
-      decoration: BoxDecoration(
-        color: color.withOpacity(0.09),
-        borderRadius: BorderRadius.circular(AppRadius.circle),
-        border: Border.all(color: color.withOpacity(0.28)),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          Icon(icon, size: 11, color: color),
-          const SizedBox(width: 4),
-          Text(
-            text,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-              color: color,
-              fontSize: 10,
-              fontWeight: FontWeight.w700,
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxWidth: 180),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+        decoration: BoxDecoration(
+          color: color.withValues(alpha: 0.09),
+          borderRadius: BorderRadius.circular(AppRadius.circle),
+          border: Border.all(color: color.withValues(alpha: 0.28)),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Icon(icon, size: 11, color: color),
+            const SizedBox(width: 4),
+            Flexible(
+              child: Text(
+                text,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  color: color,
+                  fontSize: 10,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -162,7 +168,7 @@ class CompactMissionHeader extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.08),
+        color: color.withValues(alpha: 0.08),
         borderRadius: BorderRadius.circular(AppRadius.circle),
       ),
       child: Row(
@@ -179,7 +185,7 @@ class CompactMissionHeader extends StatelessWidget {
           const SizedBox(width: 5),
           Text(
             '$label $value',
-            style: TextStyle(
+            style: const TextStyle(
               color: AppColors.textSecondary,
               fontSize: 10,
               fontWeight: FontWeight.w600,

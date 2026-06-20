@@ -15,43 +15,52 @@ class MissionLegend extends StatelessWidget {
         borderRadius: BorderRadius.circular(AppRadius.lg),
         border: Border.all(color: AppColors.panelBorder),
       ),
-      child: const Wrap(
-        spacing: 10,
-        runSpacing: 8,
-        children: <Widget>[
-          _LegendItem(
-            label: 'Disponível',
-            description: 'Pode ser planejada agora',
-            color: AppColors.available,
-          ),
-          _LegendItem(
-            label: 'Bloqueada',
-            description: 'Exige requisitos pendentes',
-            color: AppColors.locked,
-          ),
-          _LegendItem(
-            label: 'Sucesso',
-            description: 'Concluída com êxito',
-            color: AppColors.success,
-          ),
-          _LegendItem(
-            label: 'Sucesso parcial',
-            description: 'Concluída com limitações',
-            color: AppColors.yellow,
-          ),
-          _LegendItem(
-            label: 'Falha',
-            description: 'Missão encerrada com falha',
-            color: AppColors.red,
-          ),
-          _LegendItem(
-            label: 'Em andamento',
-            description: 'Operação ativa',
-            color: AppColors.accent,
-          ),
-          _LegendLineItem(label: 'Dependência principal', dashed: false),
-          _LegendLineItem(label: 'Ramificação futura', dashed: true),
-        ],
+      child: const SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            _LegendItem(
+              label: 'Disponível',
+              description: 'Pode ser planejada agora',
+              color: AppColors.available,
+            ),
+            SizedBox(width: 10),
+            _LegendItem(
+              label: 'Bloqueada',
+              description: 'Exige requisitos pendentes',
+              color: AppColors.locked,
+            ),
+            SizedBox(width: 10),
+            _LegendItem(
+              label: 'Sucesso',
+              description: 'Concluída com êxito',
+              color: AppColors.success,
+            ),
+            SizedBox(width: 10),
+            _LegendItem(
+              label: 'Sucesso parcial',
+              description: 'Concluída com limitações',
+              color: AppColors.yellow,
+            ),
+            SizedBox(width: 10),
+            _LegendItem(
+              label: 'Falha',
+              description: 'Missão encerrada com falha',
+              color: AppColors.red,
+            ),
+            SizedBox(width: 10),
+            _LegendItem(
+              label: 'Em andamento',
+              description: 'Operação ativa',
+              color: AppColors.accent,
+            ),
+            SizedBox(width: 10),
+            _LegendLineItem(label: 'Dependência principal', dashed: false),
+            SizedBox(width: 10),
+            _LegendLineItem(label: 'Ramificação futura', dashed: true),
+          ],
+        ),
       ),
     );
   }

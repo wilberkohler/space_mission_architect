@@ -305,26 +305,44 @@ class MissionDetailPanel extends StatelessWidget {
   }
 
   Widget _metaChip(String label, String value, IconData icon) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
-      decoration: BoxDecoration(
-        color: AppColors.panelLight,
-        borderRadius: BorderRadius.circular(AppRadius.circle),
-        border: Border.all(color: AppColors.panelBorder),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          Icon(icon, size: 12, color: AppColors.textMuted),
-          const SizedBox(width: 5),
-          Text('$label: ',
-              style: const TextStyle(color: AppColors.textMuted, fontSize: 10)),
-          Text(value,
-              style: const TextStyle(
-                  color: AppColors.textSecondary,
-                  fontSize: 10,
-                  fontWeight: FontWeight.w700)),
-        ],
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxWidth: 220),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+        decoration: BoxDecoration(
+          color: AppColors.panelLight,
+          borderRadius: BorderRadius.circular(AppRadius.circle),
+          border: Border.all(color: AppColors.panelBorder),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Icon(icon, size: 12, color: AppColors.textMuted),
+            const SizedBox(width: 5),
+            Flexible(
+              child: Text.rich(
+                TextSpan(
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: '$label: ',
+                      style: const TextStyle(color: AppColors.textMuted),
+                    ),
+                    TextSpan(
+                      text: value,
+                      style: const TextStyle(
+                        color: AppColors.textSecondary,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ],
+                ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(fontSize: 10),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -351,7 +369,7 @@ class MissionDetailPanel extends StatelessWidget {
 
   String _statusLabel(MissionStatus status) {
     return switch (status) {
-      MissionStatus.available => 'Disponivel',
+      MissionStatus.available => 'Disponível',
       MissionStatus.success => 'Sucesso',
       MissionStatus.partialSuccess => 'Parcial',
       MissionStatus.failure => 'Falha',

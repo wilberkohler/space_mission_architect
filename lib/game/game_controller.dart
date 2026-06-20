@@ -179,6 +179,11 @@ class GameController extends ChangeNotifier {
     notifyListeners();
   }
 
+  void applyReputationDelta({int pub = 0, int sci = 0, int ind = 0}) {
+    currentReputation = currentReputation.copyWith(pub: pub, sci: sci, ind: ind);
+    notifyListeners();
+  }
+
   void setMissionVariable(String id, double value) {
     variableValues[id] = value;
     _syncLegacySlidersFromVariables();

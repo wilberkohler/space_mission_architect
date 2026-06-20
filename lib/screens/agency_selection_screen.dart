@@ -62,7 +62,7 @@ class _AgencySelectionScreenState extends State<AgencySelectionScreen> {
     final GameController controller = widget.controller;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Selecione sua Agencia'),
+        title: const Text('Selecione sua Agência'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -86,19 +86,19 @@ class _AgencySelectionScreenState extends State<AgencySelectionScreen> {
               duration: const Duration(milliseconds: 170),
               curve: Curves.easeOut,
               transform: Matrix4.identity()
-                ..translate(0.0, hovered ? -2.0 : 0.0),
+                ..translateByDouble(0.0, hovered ? -2.0 : 0.0, 0.0, 1.0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
                 border: Border.all(
                   color: hovered
-                      ? Colors.cyanAccent.withOpacity(0.42)
+                      ? Colors.cyanAccent.withValues(alpha: 0.42)
                       : Colors.transparent,
                   width: hovered ? 1.2 : 1,
                 ),
                 boxShadow: hovered
                     ? <BoxShadow>[
                         BoxShadow(
-                          color: Colors.cyanAccent.withOpacity(0.14),
+                          color: Colors.cyanAccent.withValues(alpha: 0.14),
                           blurRadius: 18,
                           spreadRadius: 1,
                         ),
@@ -127,7 +127,7 @@ class _AgencySelectionScreenState extends State<AgencySelectionScreen> {
                     const SizedBox(height: 10),
                     ReputationBar(value: agency.initialReputation),
                     const SizedBox(height: 10),
-                    Text('Orcamento Base: ${agency.baseBudget}M'),
+                    Text('Orçamento Base: ${agency.baseBudget}M'),
                     const SizedBox(height: 12),
                     Align(
                       alignment: Alignment.centerRight,
@@ -146,7 +146,7 @@ class _AgencySelectionScreenState extends State<AgencySelectionScreen> {
                             ),
                           );
                         },
-                        child: const Text('Escolher Agencia'),
+                        child: const Text('Escolher Agência'),
                       ),
                     ),
                   ],

@@ -29,7 +29,8 @@ class GameCockpitScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final agency = controller.selectedAgency;
-    final int year = controller.selectedMission?.year ?? (controller.missions.isEmpty ? 1960 : controller.missions.first.year);
+    final int year = controller.selectedMission?.year ??
+        (controller.missions.isEmpty ? 1960 : controller.missions.first.year);
 
     return Scaffold(
       backgroundColor: Colors.transparent,
@@ -51,7 +52,8 @@ class GameCockpitScaffold extends StatelessWidget {
                   selectedAgency: agency,
                   currentYear: year,
                   budget: controller.budgetM,
-                  careerTitle: 'N${controller.playerCareer.level} ${controller.playerCareer.title}',
+                  careerTitle:
+                      'N${controller.playerCareer.level} ${controller.playerCareer.title}',
                   scienceScore: controller.currentReputation.scientific,
                   industryScore: controller.currentReputation.technical,
                   reputationScore: controller.currentReputation.public,
@@ -61,24 +63,44 @@ class GameCockpitScaffold extends StatelessWidget {
                 Expanded(child: body),
                 const SizedBox(height: 8),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                   decoration: BoxDecoration(
                     color: AppColors.panel,
                     borderRadius: BorderRadius.circular(14),
                     border: Border.all(color: AppColors.panelBorder),
                     boxShadow: <BoxShadow>[
-                      BoxShadow(color: AppColors.accent.withOpacity(0.04), blurRadius: 12),
+                      BoxShadow(
+                        color: AppColors.accent.withValues(alpha: 0.04),
+                        blurRadius: 12,
+                      ),
                     ],
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: <Widget>[
-                      _navItem(CockpitTab.tree, Icons.account_tree_outlined, 'Árvore'),
-                      _navItem(CockpitTab.planning, Icons.assignment_outlined, 'Planejamento'),
-                      _navItem(CockpitTab.mission, Icons.rocket_launch_outlined, 'Missão'),
-                      _navItem(CockpitTab.reports, Icons.insert_chart_outlined, 'Relatórios'),
-                      _navItem(CockpitTab.menu, Icons.menu, 'Menu'),
-                    ],
+                  child: LayoutBuilder(
+                    builder:
+                        (BuildContext context, BoxConstraints constraints) {
+                      return SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: ConstrainedBox(
+                          constraints:
+                              BoxConstraints(minWidth: constraints.maxWidth),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: <Widget>[
+                              _navItem(CockpitTab.tree,
+                                  Icons.account_tree_outlined, 'Árvore'),
+                              _navItem(CockpitTab.planning,
+                                  Icons.assignment_outlined, 'Planejamento'),
+                              _navItem(CockpitTab.mission,
+                                  Icons.rocket_launch_outlined, 'Missão'),
+                              _navItem(CockpitTab.reports,
+                                  Icons.insert_chart_outlined, 'Relatórios'),
+                              _navItem(CockpitTab.menu, Icons.menu, 'Menu'),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
                   ),
                 ),
               ],
@@ -91,7 +113,8 @@ class GameCockpitScaffold extends StatelessWidget {
 
   Widget _navItem(CockpitTab tab, IconData icon, String label) {
     final bool selected = activeTab == tab;
-    final Color iconColor = selected ? AppColors.accent : AppColors.textSecondary;
+    final Color iconColor =
+        selected ? AppColors.accent : AppColors.textSecondary;
     return InkWell(
       onTap: onTabSelected == null
           ? null
@@ -104,13 +127,23 @@ class GameCockpitScaffold extends StatelessWidget {
         duration: const Duration(milliseconds: 220),
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
         decoration: BoxDecoration(
-          color: selected ? AppColors.accent.withOpacity(0.12) : Colors.transparent,
+          color: selected
+              ? AppColors.accent.withValues(alpha: 0.12)
+              : Colors.transparent,
           borderRadius: BorderRadius.circular(AppRadius.md),
           border: selected
-              ? Border.all(color: AppColors.accent.withOpacity(0.4), width: 1)
+              ? Border.all(
+                  color: AppColors.accent.withValues(alpha: 0.4),
+                  width: 1,
+                )
               : null,
           boxShadow: selected
-              ? <BoxShadow>[BoxShadow(color: AppColors.accent.withOpacity(0.14), blurRadius: 10)]
+              ? <BoxShadow>[
+                  BoxShadow(
+                    color: AppColors.accent.withValues(alpha: 0.14),
+                    blurRadius: 10,
+                  ),
+                ]
               : null,
         ),
         child: Column(
