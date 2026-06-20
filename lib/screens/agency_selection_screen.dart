@@ -7,7 +7,7 @@ import '../game/game_controller.dart';
 import '../models/agency.dart';
 import '../widgets/control_card.dart';
 import '../widgets/reputation_bar.dart';
-import 'mission_tree_screen.dart';
+import 'campaign_hub_screen.dart';
 
 class AgencySelectionScreen extends StatefulWidget {
   const AgencySelectionScreen({
@@ -85,11 +85,14 @@ class _AgencySelectionScreenState extends State<AgencySelectionScreen> {
               key: ValueKey<String>('agency-card-${agency.id}'),
               duration: const Duration(milliseconds: 170),
               curve: Curves.easeOut,
-              transform: Matrix4.identity()..translate(0.0, hovered ? -2.0 : 0.0),
+              transform: Matrix4.identity()
+                ..translate(0.0, hovered ? -2.0 : 0.0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
                 border: Border.all(
-                  color: hovered ? Colors.cyanAccent.withOpacity(0.42) : Colors.transparent,
+                  color: hovered
+                      ? Colors.cyanAccent.withOpacity(0.42)
+                      : Colors.transparent,
                   width: hovered ? 1.2 : 1,
                 ),
                 boxShadow: hovered
@@ -112,7 +115,8 @@ class _AgencySelectionScreenState extends State<AgencySelectionScreen> {
                         Expanded(
                           child: Text(
                             agency.name,
-                            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+                            style: const TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.w700),
                           ),
                         ),
                         Chip(label: Text(agency.country)),
@@ -137,7 +141,8 @@ class _AgencySelectionScreenState extends State<AgencySelectionScreen> {
                           controller.selectAgency(agency);
                           Navigator.of(context).push(
                             MaterialPageRoute<void>(
-                              builder: (_) => MissionTreeScreen(controller: controller),
+                              builder: (_) =>
+                                  CampaignHubScreen(controller: controller),
                             ),
                           );
                         },

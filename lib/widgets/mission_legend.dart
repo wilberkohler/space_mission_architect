@@ -8,24 +8,49 @@ class MissionLegend extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.sm),
+      padding: const EdgeInsets.symmetric(
+          horizontal: AppSpacing.md, vertical: AppSpacing.sm),
       decoration: BoxDecoration(
         color: AppColors.panel,
         borderRadius: BorderRadius.circular(AppRadius.lg),
         border: Border.all(color: AppColors.panelBorder),
       ),
-      child: Wrap(
+      child: const Wrap(
         spacing: 10,
         runSpacing: 8,
-        children: const <Widget>[
-          _LegendItem(label: 'Disponivel', color: AppColors.available),
-          _LegendItem(label: 'Sucesso', color: AppColors.success),
-          _LegendItem(label: 'Sucesso parcial', color: AppColors.yellow),
-          _LegendItem(label: 'Falha', color: AppColors.red),
-          _LegendItem(label: 'Bloqueada', color: AppColors.locked),
-          _LegendItem(label: 'Em andamento', color: AppColors.accent),
-          _LegendLineItem(label: 'Dependencia principal', dashed: false),
-          _LegendLineItem(label: 'Ramificacao futura', dashed: true),
+        children: <Widget>[
+          _LegendItem(
+            label: 'Disponível',
+            description: 'Pode ser planejada agora',
+            color: AppColors.available,
+          ),
+          _LegendItem(
+            label: 'Bloqueada',
+            description: 'Exige requisitos pendentes',
+            color: AppColors.locked,
+          ),
+          _LegendItem(
+            label: 'Sucesso',
+            description: 'Concluída com êxito',
+            color: AppColors.success,
+          ),
+          _LegendItem(
+            label: 'Sucesso parcial',
+            description: 'Concluída com limitações',
+            color: AppColors.yellow,
+          ),
+          _LegendItem(
+            label: 'Falha',
+            description: 'Missão encerrada com falha',
+            color: AppColors.red,
+          ),
+          _LegendItem(
+            label: 'Em andamento',
+            description: 'Operação ativa',
+            color: AppColors.accent,
+          ),
+          _LegendLineItem(label: 'Dependência principal', dashed: false),
+          _LegendLineItem(label: 'Ramificação futura', dashed: true),
         ],
       ),
     );
@@ -33,9 +58,14 @@ class MissionLegend extends StatelessWidget {
 }
 
 class _LegendItem extends StatelessWidget {
-  const _LegendItem({required this.label, required this.color});
+  const _LegendItem({
+    required this.label,
+    required this.description,
+    required this.color,
+  });
 
   final String label;
+  final String description;
   final Color color;
 
   @override
@@ -52,7 +82,10 @@ class _LegendItem extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 5),
-        Text(label, style: const TextStyle(color: AppColors.textSecondary, fontSize: 11)),
+        Text(
+          '$label: $description',
+          style: const TextStyle(color: AppColors.textSecondary, fontSize: 11),
+        ),
       ],
     );
   }
@@ -77,7 +110,9 @@ class _LegendLineItem extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 5),
-        Text(label, style: const TextStyle(color: AppColors.textSecondary, fontSize: 11)),
+        Text(label,
+            style:
+                const TextStyle(color: AppColors.textSecondary, fontSize: 11)),
       ],
     );
   }
@@ -96,7 +131,8 @@ class _LegendLinePainter extends CustomPainter {
       ..style = PaintingStyle.stroke;
 
     if (!dashed) {
-      canvas.drawLine(Offset(0, size.height / 2), Offset(size.width, size.height / 2), p);
+      canvas.drawLine(
+          Offset(0, size.height / 2), Offset(size.width, size.height / 2), p);
       return;
     }
 
@@ -105,7 +141,8 @@ class _LegendLinePainter extends CustomPainter {
     const double gap = 3;
     while (x < size.width) {
       final double end = (x + dash).clamp(0, size.width);
-      canvas.drawLine(Offset(x, size.height / 2), Offset(end, size.height / 2), p);
+      canvas.drawLine(
+          Offset(x, size.height / 2), Offset(end, size.height / 2), p);
       x += dash + gap;
     }
   }
